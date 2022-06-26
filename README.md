@@ -1,1 +1,2 @@
 # Segmentation-Suite
+用pytorch实现的图像分割套件，使用json保存超参，使用DDP模块来支持单机多卡的分布式任务，能很好地对各种数据增强方式和自定义模型进行训练和测试，能够使用任何数据集进行包括Precision、Accuracy、Recall、F1-score和IoU在内的多指标评估，内置了多种学习率调度方式和多种损失函数，并支持多种可视化工具（TensorboardX、Grad-CAM等）
