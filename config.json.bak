@@ -1,0 +1,73 @@
+{
+  "train_loader": {
+    "type": "my_dataloader",
+    "args": {
+      "dir_name": "CamVid",
+      "dilation_rate": 0.1,
+      "train_val_or_test": "train",
+      "batch_size": 2,
+      "shuffle": true,
+      "val_split": 0.3,
+      "num_worker": 0,
+      "pin_memory": true,
+      "drop_last": true,
+      "normalization": true,
+      "mean": null,
+      "std": null,
+      "height": 720,
+      "width": 960,
+      "crop_height": 0,
+      "crop_width": 0,
+      "h_flip": true,
+      "v_flip": false,
+      "brightness": 0.3,
+      "rotation": 0.3,
+      "aug_in_ngp": false
+    }
+  },
+  "model": {
+    "type": "DualResNet_imagenet",
+    "args": {
+      "augment":true
+    }
+  },
+  "criterion": {
+    "type": "CrossEntropy",
+    "args": {}
+  },
+  "trainer": {
+    "type": "trainer",
+    "args": {
+      "train_epochs": 100,
+      "save_interval": 10,
+      "val_interval": 5,
+      "optim_module": "torch.optim",
+      "optim_type": "Adam",
+      "optim_args": {
+        "lr": 0.0015,
+        "betas": [
+          0.9,
+          0.999
+        ],
+        "eps": 1e-08
+      },
+      "resume_path": "saved/DualResNet/CamVid/best_model.pth",
+      "epochs": 0,
+      "train_logger": null,
+      "tensorboard": true,
+      "backbone_lr_factor": 0.2,
+      "aux_loss_factor": 0.4,
+      "mnt_metric": "mean_IoU",
+      "early_stopping": 10,
+      "lr_scheduler_name": null,
+      "freeze_bn": false,
+      "data_name": "CamVid"
+    }
+  },
+  "module_dict": {
+    "train_loader": "data",
+    "model": "models",
+    "criterion": "utils",
+    "trainer": "utils"
+  }
+}
